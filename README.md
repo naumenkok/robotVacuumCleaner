@@ -1,6 +1,6 @@
 # Robot sprzątający 104.4
 
-## Zespół projektu:
+## Skład zespołu projektowego:
 - Naumenko Kateryna 
 - Nitkiewicz Jakub
 - Świderska Ada
