@@ -4,5 +4,5 @@
 - Naumenko Kateryna 
 - Nitkiewicz Jakub
 - Świderska Ada
-## Wszystka szczegółowa informacja znajduje się w:
+## Wszystkie szczegółowe informacje znajdują się w pliku:
 > Documentation.pdf
