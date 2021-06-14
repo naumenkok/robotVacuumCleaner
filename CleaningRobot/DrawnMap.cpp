@@ -25,6 +25,26 @@ void DrawnMap::drawObstacles() {
 	}
 }
 
+void DrawnMap::drawFinishWindow() {
+	RectangleShape finishWindow(Vector2f(11 * scale, 6 * scale));
+	finishWindow.setFillColor(Color(250, 0, 250));
+	finishWindow.setOutlineThickness(4.f);
+	finishWindow.setOutlineColor(Color(150, 0 , 150));
+	finishWindow.setPosition(70, 36);
+	my_window.draw(finishWindow);
+
+	Font font; 
+	font.loadFromFile("ARCADECLASSIC.ttf");
+	Text text;
+	text.setFont(font);
+	text.setString("Finish!");
+	text.setCharacterSize(24); 
+	text.setFillColor(Color::White);
+	text.setPosition(76, 50);
+	text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+	my_window.draw(text);
+}
+
 void DrawnMap::drawTrace(vector<pair<int, int>>& coord_for_draw) {
 	RectangleShape small_rectangle(Vector2f(1 * scale, 1 * scale));
 	small_rectangle.setFillColor(Color(250, 250, 250));
@@ -47,7 +67,7 @@ vector<Point> DrawnMap::getTrack(const size_t x0, const size_t y0, Map* map2d) {
 	return road;
 }
 
-void DrawnMap::loop(int& x, int& y) {
+void DrawnMap::drawAll(int& x, int& y) {
 	float timer = 0, delay = 0.1;
 	Clock clock;
 	vector<Point> trace = getTrack(x, y, map2d);
@@ -67,38 +87,26 @@ void DrawnMap::loop(int& x, int& y) {
 				my_window.close();
 			}
 		}
-		if (timer > delay & i < trace.size()-1){
-			i += 1;
-			x = trace[i].x;
-			y = trace[i].y;
-			coord_for_draw.push_back({ x, y });
-			timer = 0;
+		if (timer > delay){
+			if (i < trace.size() - 1) {
+				i += 1;
+				x = trace[i].x;
+				y = trace[i].y;
+				coord_for_draw.push_back({ x, y });
+				timer = 0;
+			}
 		}
-
+		
 		my_window.clear(Color(100, 100, 100));
-
 		drawObstacles();
 		drawTrace(coord_for_draw);
-		robot.setPosition(x,y);
+		robot.setPosition(x, y);
 		int x0 = robot.getX();
 		int y0 = robot.getY();
 		drawRobot(x0, y0);
+
+		if (i >= trace.size() - 1) { drawFinishWindow(); }
+
 		my_window.display();
 	}
-}
-
-int main()
-{
-	std::array<std::array<int, COLUMNS>, ROWS> map2d = { 0 };
-	cout <<"y"<< map2d.size() << " x" << map2d[0].size();
-	size_t started_x = 1, started_y = 1;
-	int x = started_x, y = started_y;
-	
-
-
-	Map m1(map2d);
-	m1.addWalls();
-	m1.addObstacle(2, 3, 9, 4);
-	DrawnMap dm(&m1, "Testik");
-	dm.loop(x, y);
 }
