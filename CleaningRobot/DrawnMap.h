@@ -6,11 +6,6 @@
 using namespace sf;
 const int scale = 10;
 
-struct Dir
-{
-	Direction current, old;
-};
-
 class DrawnMap {
 private:
 	int size_x;
