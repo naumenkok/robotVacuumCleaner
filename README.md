@@ -5,16 +5,16 @@ The cleaning robot project was realized by implementing six classes that allow s
 ## Project work flow
 First, we deliberated on the robot's path, focusing on the driving algorithm:
 <p align="center">
-  <img src="./Img/1.png" width="600">
+  <img src="./Img/1.png" width="900">
 </p>
 Then, we opted for a terminal application:
 <p align="center">
-  <img src="./Img/2.png" width="600">
+  <img src="./Img/2.png" width="900">
 </p>
 In the screenshots, you can see obstacles marked as '||,' and the consecutive numbers represent the robot's positions.
 The terminal version was quite challenging to comprehend, so we decided to go with a graphical version using SFML:
 <p align="center">
-  <img src="./Img/3.png" width="600">
+  <img src="./Img/3.png" width="900">
 </p>
 In the screenshots, obstacles and walls are marked in purple, the robot as a pink circle. Gray areas are still dirty surfaces, while white areas are already clean.
 
@@ -24,7 +24,7 @@ The graphical interface was created using the Simple and Fast Multimedia Library
 ## Project architecture
 
 <p align="center">
-  <img src="./Img/4.png" width="600">
+  <img src="./Img/4.png" width="900">
 </p>
 
 1. Map Class – Contains methods that allow, among others: to add walls, add obstacles, check whether the entire map area has been cleaned up.
